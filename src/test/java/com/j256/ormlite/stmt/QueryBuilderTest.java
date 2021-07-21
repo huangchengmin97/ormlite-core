@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Arrays;
 
 import org.junit.Test;
 
@@ -1698,9 +1697,8 @@ public class QueryBuilderTest extends BaseCoreStmtTest {
 		assertEquals(1, qb.countOf());
 		GenericRawResults<String[]> results = qb.queryRaw();
 		List<String[]> stringResults = results.getResults();
-		Arrays.sort(stringResults.get(0));
 		assertEquals(1, stringResults.size());
-		assertEquals(Integer.toString(foo.id), stringResults.get(0)[2]);
+		assertEquals(Integer.toString(foo.id), stringResults.get(0)[0]);
 		assertEquals(foo.stringField, stringResults.get(0)[3]);
 	}
 
@@ -1713,9 +1711,8 @@ public class QueryBuilderTest extends BaseCoreStmtTest {
 		QueryBuilder<Foo, Integer> qb = dao.queryBuilder();
 		assertEquals(1, qb.countOf());
 		String[] result = qb.queryRawFirst();
-		Arrays.sort(result);
 		assertEquals(4, result.length);
-		assertEquals(Integer.toString(foo.id), result[2]);
+		assertEquals(Integer.toString(foo.id), result[0]);
 		assertEquals(foo.stringField, result[3]);
 	}
 
